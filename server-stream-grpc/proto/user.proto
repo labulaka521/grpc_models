@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// 服务端流式 gRPC
+// 客户端发起一个请求到服务端，服务端返回一段连续的数据流响应
+package proto;
+
+
+// 定义UserService微服务
+service UserService {
+    // 微服务中获取用户信息的RPC函数
+    rpc GetUserInfo (UserRequest) returns (stream UserResponse);
+}
+
+// 客户端请求的格式
+message UserRequest {
+    int32 ID = 1;
+}
+
+// 服务端响应的格式
+message UserResponse {
+    string name = 1;
+    int32 age = 2;
+}
